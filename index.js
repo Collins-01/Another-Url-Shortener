@@ -69,7 +69,10 @@ app.get('/:shortUrl', async (req, res) => {
       .get();
     if (!querySnapshot.empty) {
       const data = querySnapshot.docs[0].data()['long_url'];
-      res.redirect(data);
+    //   res.redirect(data);
+    return res.status(200).json({
+        longUrl: data,
+    })
     } else {
       return res.status(404).json({
         message: `url not found`
